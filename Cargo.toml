@@ -1,0 +1,38 @@
+[package]
+name = "kctf"
+version = "1.0.0"
+edition = "2021"
+description = "A fast asynchronous library and cli to solve (or generate) proof-of-work challenges generated using the kctf scheme."
+license = "Apache-2.0"
+authors = ["KernelRop"]
+repository = "https://github.com/kernelrop/kctf"
+documentation = "https://docs.rs/kctf"
+
+[dev-dependencies]
+kctf-pow = "1"
+criterion = { version = "0.5", features = ["html_reports"] }
+tokio = { version = "1.42.0", features = ["macros", "rt-multi-thread"] }
+
+[dependencies]
+rug = "1.26.1"
+rand = "0.8.5"
+base64 = "0.22.1"
+once_cell = "1.20.2"
+
+[[bench]]
+name = "kctf_benchmark"
+harness = false
+
+[lib]
+name = "kctf"
+path = "src/lib.rs"
+
+[[bin]]
+name = "kctf"
+path = "src/main.rs"
+doc = false
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
