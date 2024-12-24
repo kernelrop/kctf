@@ -14,6 +14,8 @@ This will install `kctf` to your cargo binary directory, usually at `~/.cargo/bi
 
 This program can be used in your challenges as a drop in replacement for the [kCTF script](https://github.com/google/kctf/blob/v1/docker-images/challenge/pow.py)
 
+On the challenge solver side, if the [solver script](dist/pow.py) is running on a non linux system, it will run the [kCTF script](https://github.com/google/kctf/blob/v1/docker-images/challenge/pow.py) instead.
+
 ## CLI Usage
 
 ```sh

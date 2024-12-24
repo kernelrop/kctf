@@ -57,7 +57,6 @@ mod tests {
     }
 
     #[test]
-    #[ignore]
     fn expensive_self_test_difficulty_31337() {
         let challenge = KctfPow::gen_challenge(31337);
         let solution = challenge.clone().solve();
@@ -65,7 +64,6 @@ mod tests {
     }
 
     #[test]
-    #[ignore]
     fn expensive_google_kctf_challenge() {
         let result = KctfPow::from_challenge("s.AAU5.AACV7mM375HM8wElUbxsknqD")
             .unwrap()

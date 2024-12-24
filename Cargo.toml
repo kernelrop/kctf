@@ -1,6 +1,6 @@
 [package]
 name = "kctf"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2021"
 description = "A fast asynchronous library and cli to solve (or generate) proof-of-work challenges generated using the kctf scheme."
 license = "Apache-2.0"

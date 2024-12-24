@@ -10,7 +10,8 @@ fn main() {
     let args: Vec<String> = std::env::args().collect();
 
     let default_path = String::from("kctf");
-    let default_url = String::from("https://github.com/kernelrop/kctf/releases/latest/pow.py");
+    let default_url =
+        String::from("https://github.com/kernelrop/kctf/releases/latest/download/pow.py");
     let binary_path = args.first().unwrap_or(&default_path);
 
     if args.len() < 3 {
