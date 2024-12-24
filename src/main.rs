@@ -10,6 +10,7 @@ fn main() {
     let args: Vec<String> = std::env::args().collect();
 
     let default_path = String::from("kctf");
+    let default_url = String::from("https://github.com/kernelrop/kctf/releases/latest/pow.py");
     let binary_path = args.first().unwrap_or(&default_path);
 
     if args.len() < 3 {
@@ -18,7 +19,7 @@ fn main() {
 
     match args[1].as_str() {
         "solve" => solve(&args[2]),
-        "ask" => ask(&args[2]),
+        "ask" => ask(&args[2], args.iter().nth(3).unwrap_or(&default_url)),
         "gen" => gen(&args[2]),
         "verify" => {
             if args.len() != 4 {
@@ -37,7 +38,7 @@ fn usage(binary_path: &str) -> () {
         format!(
             "Usage:
     Solve pow: {0} solve <challenge>
-    Check pow: {0} ask <difficulty>
+    Check pow: {0} ask <difficulty> [pow download url]
     Gen challenge: {0} gen <difficulty>
     Verify challenge: {0} verify <challenge> <solution>
     Get help: {0} help
@@ -78,18 +79,19 @@ fn generate_challenge(difficulty: &str) -> KctfPow {
     KctfPow::gen_challenge(difficulty)
 }
 
-fn ask(difficulty: &str) {
+fn ask(difficulty: &str, download_url: &str) {
     let challenge = generate_challenge(difficulty);
 
     print(&format!(
         "== proof-of-work: enabled ==
 please solve a pow first
 You can run the solver with:
-    kctf solve {}
+    python3 <(curl -sSL {}) solve {}
 ===================
 
 solution?
 ",
+        download_url,
         challenge.serialize_challenge()
     ));
 
